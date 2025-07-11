@@ -20,12 +20,12 @@ package org.example.chapter10;
 
     // 3) Set
     //      : 데이터의 순서 유지 x, 중복 불가능 (cf. 특정 구현체는 정렬 | 순서 제공 가능)
-    //      - 주요 구현체: HashSet, TreeSet, LinkedHashSet
+    //      - 주요 구현체: HashSet, LinkedHashSet, TreeSet
 
     // 4) Map
     //      : 키(key) - 값(value) 쌍으로 이루어진 데이터를 다룸
     //      - 키(중복허용 x), 값(중복 허용 o)
-    //      - 주요 구현체: HashMap, TreeMap, LinkedHashMap
+    //      - 주요 구현체: HashMap, LinkedHashMap, TreeMap
 
     // cf) Queue(큐): FIFO (First In First Out)
     //     stack(스택): LIFO (Last In First Out)

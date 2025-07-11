@@ -44,6 +44,7 @@ public class B_List {
         arrayList.add("Java"); // 리스트 마지막 요소 저장
         arrayList.add(0, "Python"); // 원하는 위치에 저장
         arrayList.add("JavaScript");
+        System.out.println(arrayList); //[Python, Java, JavaScript]
 
         linkedList.add("Apple");
         linkedList.add("Orange");
@@ -51,11 +52,9 @@ public class B_List {
         linkedList.add(1, "Banana");
         System.out.println(linkedList); //[Apple, Banana, Orange, Mango]
 
-        System.out.println(arrayList); //[Python, Java, JavaScript]
-
         // 데이터 읽기(반환)
         String firstElement = arrayList.get(0); // 0번 인덱스 요소 반환
-        System.out.println(firstElement);
+        System.out.println(firstElement); // Python
 
         // 데이터 수정
         arrayList.set(2, "TypeScript");
