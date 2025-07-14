@@ -1,9 +1,9 @@
 package org.example.chapter04;
 
 // === 클래스 구조 === //
-// 1. 필드(Field): 데이터를 표현하는 속성
-// 2. 메서드(Method): 데이터의 동작
-// 3. 생성자(Constructor): 데이터를 생성하는 역할
+    // 1. 필드(Field): 데이터를 표현하는 속성
+    // 2. 메서드(Method): 데이터의 동작
+    // 3. 생성자(Constructor): 데이터를 생성하는 역할
 
 class Car {
     // 클래스의 속성(필드)

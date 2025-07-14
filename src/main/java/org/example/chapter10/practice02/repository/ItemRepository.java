@@ -14,3 +14,7 @@ public interface ItemRepository {
     Item findById(String itemId); // 단건 조회
     void removeItem(String itemId);
 }
+
+/*
+    set 형태는 중복/ 순차 x
+ */
