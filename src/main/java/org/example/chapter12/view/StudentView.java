@@ -22,7 +22,7 @@ public class StudentView {
     }
 
     private void showAllStudentsView() {
-        
+
     }
 
     private void showStudentByStudentNumber() {
