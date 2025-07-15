@@ -19,13 +19,10 @@ public class StudentResponseDto {
 
     @Override
     public String toString() {
-        return "StudentResponseDto{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", studentNumber='" + studentNumber + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
+        return "Student{ " +
+                ", 이름=" + name +
+                ", 나이=" + age +
+                ", 학번=" + studentNumber +
+                ", 생성일=" + createdAt + " }";
     }
-
-
 }

@@ -23,7 +23,7 @@ public class StudentController {
         // 학생 추가 시 입력한 studentNumber의 학생이 존재하는 경우
         // : 기능 x + 메시지 출력
 
-        StudentResponseDto studentResponseDto = getStudentById(dto.getStudentNumber());
+        StudentResponseDto studentResponseDto = getStudentByNumber(dto.getStudentNumber());
 
         if (studentResponseDto != null) {
             // 입력받은 studentNumber 학생이 존재 - 학생 추가 불가
@@ -48,7 +48,7 @@ public class StudentController {
         return response;
     }
     //3) 특정 학생 조회 기능 - 단건 조회
-    public StudentResponseDto getStudentById(String studentNumber) {
+    public StudentResponseDto getStudentByNumber(String studentNumber) {
         for (Student student : studentsList) {
             if (student.getStudentNumber().equals(studentNumber)) {
                 return new StudentResponseDto(
@@ -63,7 +63,7 @@ public class StudentController {
 
     //4) 학생 수정 기능
     public boolean updateStudent(StudentRequestDto dto) {
-        StudentResponseDto studentResponseDto = getStudentById(dto.getStudentNumber());
+        StudentResponseDto studentResponseDto = getStudentByNumber(dto.getStudentNumber());
 
         if (studentResponseDto == null) {
             // 수정할 학생 정보가 존재하지 않으면

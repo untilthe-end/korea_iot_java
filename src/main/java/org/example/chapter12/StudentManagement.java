@@ -43,10 +43,10 @@ import java.util.Scanner;
 public class StudentManagement {
     public static void main(String[] args) {
         List<Student> dummyStudents = new ArrayList<>();
-        dummyStudents.add(new Student(1, "Lee", 22, "12345"));
-        dummyStudents.add(new Student(2, "Park", 28, "23333"));
-        dummyStudents.add(new Student(3, "Cho", 14, "55555"));
-        dummyStudents.add(new Student(4, "Ming", 12, "00000"));
+        dummyStudents.add(new Student(1, "Lee", 22, "1111"));
+        dummyStudents.add(new Student(2, "Park", 28, "2222"));
+        dummyStudents.add(new Student(3, "Cho", 14, "3333"));
+        dummyStudents.add(new Student(4, "Ming", 12, "4444"));
 
         StudentController controller = new StudentController(dummyStudents);
         Scanner sc = new Scanner(System.in);
