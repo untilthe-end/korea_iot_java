@@ -53,12 +53,12 @@ class GameCharacter {
 
     @Override
     public String toString() {
-        return "GameCharacter{" +
-                "name='" + name + '\'' +
-                ", sort='" + sort + '\'' +
-                ", skill='" + skill + '\'' +
-                ", item='" + item + '\'' +
-                '}';
+        return
+                " 이름: '" + name + '\'' +
+                ", 직업: " + sort + '\'' +
+                ", 스킬: '" + skill + '\'' +
+                ", 아이템: '" + item + '\''
+                ;
     }
 }
 public class F_Builder {

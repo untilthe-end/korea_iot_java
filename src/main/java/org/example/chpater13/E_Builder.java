@@ -23,16 +23,20 @@ package org.example.chpater13;
     4. 빌더 사용 방법
  */
 class Pizza {
-    // 필수 사항
+    // 필수 사항 - 배달앱 주문시 꼭 필요한 변수
     private final String menu; // 종류
     private final String size; // 크기
 
-    // 선택 사항
+    // 선택 사항 - 옵션으로 추가할 내용들
     private final boolean cheese;
     private final boolean mushroom;
     private final boolean pepperoni;
 
+    // final 변하지 않는 값
+
 /*
+    메뉴와 사이즈만 시키는 고객도 있을것이고
+
     public Pizza(String menu, String size) {
         this.menu = menu;
         this.size = size;
@@ -41,6 +45,7 @@ class Pizza {
         this.pepperoni = false;
     }
 
+    메뉴/사이즈/ 치즈, 버섯, 페페로니 옵션 추가 하는 사람도 있을것이고...
     public Pizza(String menu, String size, boolean cheese, boolean mushroom, boolean pepperoni) {
         this.menu = menu;
         this.size = size;
@@ -98,7 +103,7 @@ class Pizza {
         this.menu = builder.menu;
         this.size = builder.size;
 
-        // add~() 메서드 호출하지 않더라도 기본값 false;
+        // add~() 메서드 호출하지 않아도 기본값 false;
         this.cheese = builder.cheese;
         this.mushroom = builder.mushroom;
         this.pepperoni = builder.pepperoni;
@@ -125,3 +130,54 @@ public class E_Builder {
     //      - 객체를 연결고리로 메서드(함수)를 지속적으로 호출
     }
 }
+
+
+/*
+class Pizza{
+df
+
+ */
+
+/*
+class Car {
+    private final String brand;
+    private final String model;
+
+    private final boolean airSeat;
+    private final boolean heatSeat;
+
+    public static class Builder2 {
+
+        private final String brand;
+        private final String model;
+
+        private boolean airSeat = false;
+        private boolean heatSeat = false;
+
+        // 필수 값들은 생성자 만듬.
+        public Builder2(String brand, String model) {
+            this.brand = brand;
+            this.model = model;
+        }
+
+        public Builder2 addAirSeat() {
+            this.airSeat = true;
+            return this;
+        }
+
+        public Builder2 addHeatSeat() {
+            this.heatSeat = true;
+            return this;
+        }
+
+        public Car build(){
+            return new Car(this);
+        }
+    }
+    public Car(Builder2 build) {
+        this.brand = build.brand;
+        this.model = build.model;
+        this.airSeat = build.airSeat;
+        this.heatSeat = build.heatSeat;
+    }
+}*/

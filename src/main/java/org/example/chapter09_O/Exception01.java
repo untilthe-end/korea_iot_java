@@ -1,4 +1,4 @@
-package org.example.chapter09;
+package org.example.chapter09_O;
 
 // === 자바 예외 처리 === //
 

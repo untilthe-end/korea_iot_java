@@ -1,4 +1,4 @@
-package org.example.chapter09;
+package org.example.chapter09_O;
 
 // == java.lang 패키지 ==
     // : 자바 프로그램의 가장 기본적인 클래스들을 포함

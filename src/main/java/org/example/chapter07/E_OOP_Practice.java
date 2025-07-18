@@ -93,7 +93,7 @@ public class E_OOP_Practice {
 
         System.out.println();
 
-        Ebook ebook1 = new Ebook("Baby의 차트 정복", "Lee Jun", 2134);
+        Ebook ebook1 = new Ebook("Baby의 차트 정복", "Lee", 2134);
         ebook1.displayInfo();
         ebook1.borrowBook();
         ebook1.borrowBook();

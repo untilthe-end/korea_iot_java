@@ -1,4 +1,4 @@
-package org.example.chapter09;
+package org.example.chapter09_O;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,5 +43,6 @@ public class Practice {
         long daysUtilNextBirthday = ChronoUnit.DAYS.between(today, nextBirthday);
 
         System.out.println("남을 생일까지 " + daysUtilNextBirthday + "일 남았습니다.");
+
     }
 }

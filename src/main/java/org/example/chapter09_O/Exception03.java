@@ -1,4 +1,4 @@
-package org.example.chapter09;
+package org.example.chapter09_O;
 
 /*
     == throw & throws ==
@@ -27,6 +27,8 @@ package org.example.chapter09;
 class InvalidUserException extends Exception {
     InvalidUserException(String message) {
         super(message); // Exception 클래스의 getMessage() 메서드 사용 가능
+        // super(message); 반드시 호출!! (예외 메시지를 객체에 저장하기 위해)
+        // System.out.println(message); 그냥 출력용 → 예외 메시지 전달 기능 없음.
     }
 }
 
@@ -37,9 +39,9 @@ class CustomException extends Exception {
 }
 public class Exception03 {
 
-                                                                            // 1) 단일 예외 던지기 - throw
-                                                                            // : 메서드 선언부에서 해당 메서드가 발생시킬 수 있는 예외를 명시하는 키워드
-                                                                            // - 메서드 호출자에게 예외 처리를 위임
+    // 1) 단일 예외 던지기 - throw
+    // : 메서드 선언부에서 해당 메서드가 발생시킬 수 있는 예외를 명시하는 키워드
+    // - 메서드 호출자에게 예외 처리를 위임
     static void login(String username, String password) throws InvalidUserException {
         if (!"admin".equals(username)) {
             // admin과 일치하지 않을 경우 - 예외 발생(사용자 정의 예외)
@@ -49,8 +51,8 @@ public class Exception03 {
         }
     }
 
-                                                                            // 2) 여러 예외 던지기 - throws
-                                                                            // : throws 키워드에 ,(콤마)로 구분하여 나열
+    // 2) 여러 예외 던지기 - throws
+    // : throws 키워드에 ,(콤마)로 구분하여 나열
     static void exceptions(int num) throws CustomException, ArithmeticException, ArrayIndexOutOfBoundsException{
         if (num == 1) {
             throw new CustomException("1번 선택 - 커스텀 예외");
@@ -64,7 +66,7 @@ public class Exception03 {
     public static void main(String[] args) {
         int age = -10;
 
-                                                                            // try-catch 블록은 항상 같이 사용
+        // try-catch 블록은 항상 같이 사용
         try {
             if (age < 0) {
                 throw new Exception("나이는 음수가 될 수 없습니다.");
@@ -75,8 +77,8 @@ public class Exception03 {
         }
         System.out.println("기타 실행 상황");
 
-                                                                            // == 사용자 정의 예외 처리 == //
-                                                                            // login("admin", "123123");
+        // == 사용자 정의 예외 처리 == //
+        // login("admin", "123123");
 
         try {
             System.out.println("출력1");
@@ -88,8 +90,8 @@ public class Exception03 {
             System.out.println(e.getMessage());
         }
 
-                                                                            // == 여러 예외 던지기 == //
-                                                                            // exceptions(1);
+        // == 여러 예외 던지기 == //
+        // exceptions(1);
 
         try {
             System.out.println("여러 예외 던지기 테스트");

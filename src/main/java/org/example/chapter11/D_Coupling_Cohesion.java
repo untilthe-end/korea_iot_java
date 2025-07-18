@@ -116,7 +116,7 @@ public class D_Coupling_Cohesion {
         ClassRoom koreanClass = new ClassRoom(koreanTeacher);
         ClassRoom mathClass = new ClassRoom(mathTeacher);
 
-        StudentCohesion student = new StudentCohesion("이승아");
+        StudentCohesion student = new StudentCohesion("Lee");
 
         Attendance attendance = new Attendance();
         attendance.checkAttendance(koreanTeacher, student);

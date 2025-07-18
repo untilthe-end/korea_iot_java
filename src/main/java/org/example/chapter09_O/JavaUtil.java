@@ -1,4 +1,4 @@
-package org.example.chapter09;
+package org.example.chapter09_O;
 
 // java.util 패키지
 // : 자바에서 가장 많이 쓰이는 기능을 모아놓은 패키지
@@ -11,6 +11,10 @@ public class JavaUtil {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         sc.close();
+
+   /*     Random random = new Random();
+        int num = random.nextInt();
+        System.out.println(num);*/
 
         Random random = new Random();
         int num = random.nextInt();

@@ -1,4 +1,4 @@
-package org.example.chapter09;
+package org.example.chapter09_O;
 
 // == java.time 패키지 == //
     // ISO-8601 표준을 기반으로 설계
@@ -62,10 +62,10 @@ public class JavaTime {
         // cf) 날짜/시간 formatting - 원하는 형식으로 출력
         LocalDateTime example = LocalDateTime.now();
         System.out.println(example);
-        
+
         // DateTimeFormatter: LocalDateTime의 날짜/시간 데이터를 원하는 패턴으로 변경
         // .ofPattern(원하고자 하는 패턴을 문자열로 전달)
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년MM월dd일 HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy년MM월dd일 HH시 mm분 ss초");
 
         // cf) 포맷 기호 - 대소문자 구분
         // y(연도), M(월), d(일) | H(시), h(시), m(분), s(초)
@@ -74,5 +74,13 @@ public class JavaTime {
 
         // 변경할 날짜/시간 데이터.format(원하는 포맷 형식);
         System.out.println(example.format(formatter));
+
+   /*     // 현재 시간 출력하기
+        LocalDateTime nowTime = LocalDateTime.now();
+        System.out.println(nowTime);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy:MM:dd HH시 mm분 ss초");
+
+        System.out.println(nowTime.format(formatter));*/
     }
 }
