@@ -1,4 +1,4 @@
-package org.example.chpater13;
+package org.example.chapter13;
 
 /*
 === 빌더(Builder) 패턴 ===

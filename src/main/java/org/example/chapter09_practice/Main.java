@@ -64,12 +64,12 @@ public class Main {
         }
 
         // 이메일 수정
-
-        try {
-            userService.updateUserEmail(1, "oooooooo@example.com");
-        } catch (UserNotFoundException e) {
-            System.out.println("수정 실패: " + e.getMessage());
-        }
+//
+//        try {
+//            userSerAvice.updateUserEmail(1, "oooooooo@example.com");
+//        } catch (UserNotFoundException e) {
+//            System.out.println("수정 실패: " + e.getMessage());
+//        }
         System.out.println();
 
         // 단건 회원 조회 (id)

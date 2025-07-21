@@ -1,4 +1,4 @@
-package org.example.chpater13;
+package org.example.chapter13;
 
 /*
    == 빌더로 게임 캐릭터 생성 ==

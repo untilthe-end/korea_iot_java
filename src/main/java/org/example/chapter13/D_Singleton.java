@@ -1,4 +1,4 @@
-package org.example.chpater13;
+package org.example.chapter13;
 // === 싱글톤 패턴 === //
     // : 소프트웨어 설계 패턴 중 하나
     // - 클래스의 인스턴스가 하나만 생성되도록 보장

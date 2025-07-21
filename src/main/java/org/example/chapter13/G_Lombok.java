@@ -1,4 +1,4 @@
-package org.example.chpater13;
+package org.example.chapter13;
 
 // === 롬복(Lombok) 라이브러리 === //
 // : 자바에서 반복적으로 작성해야하는 보일러플레이트(boilerplate) 코드를 줄여주는 라이브러리
