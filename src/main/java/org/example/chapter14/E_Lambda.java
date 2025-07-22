@@ -3,11 +3,12 @@ package org.example.chapter14;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /*
     == 람다식 ==
     : 함수형 인터페이스(추상 메서드가 하나)를 간결하게 구현하는 코드식
-    >> 딱 한가지 일을 처리하는 메서드
+    >> '딱 한가지 일'을 처리하는 메서드
 
     1. Predicate<T>(판단하다) - 맞니 안맞니 true or false
     : 입력값을 받아 조건을 검사하는 데 시용
@@ -37,12 +38,23 @@ import java.util.function.Predicate;
 
     3. Consumer<T>(소비하다)
     : 입력 값을 받아 소비(출력 or 상태 변경)하는 데 사용
-            - void accept(T t) : 입력값을 소비
+            - void accept(T t) : 입력값을 소비해서 없앰 | void
             - andThen(Consumer after): 연속적인 소비 작업을 위해 사용
 
     @FunctionalInterface
     interface Consumer<T> {
         void accept(T t);
+    }
+
+    4. Supplier<T> (공급하다)
+    : 값을 공급(생성)하는데 사용, 입력 값이 필요없음.
+    : 외부에서 값을 가져오거나, 데이터를 생성하여 반환하는 역할
+    : 메서드
+        - T get(): 반환
+
+    @FunctionalInterface
+    interface Supplier<T> {
+        T get();
     }
 
  */
@@ -87,5 +99,19 @@ public class E_Lambda {
         printLength.accept("1234567"); // 7
 
         Consumer<String> combinedConsumer = printMessage.andThen(printLength);
+
+        System.out.println();
+
+        System.out.println("=== Supplier ===");
+        // Math.random(): 0.0과 1.0 사이의 무작위 실수를 반환
+        Supplier<Double> randomValue = () -> Math.random();
+
+        System.out.println(randomValue.get());
     }
 }
+/*
+    Predicate -> .test
+    Function -> .apply
+    Consumer -> .accept
+    Supplier -> .get
+ */
