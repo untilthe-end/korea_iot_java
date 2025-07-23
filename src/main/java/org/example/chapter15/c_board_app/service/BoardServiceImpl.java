@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
     private final BoardRepository repository;
 
-    // 생성자 주입 - BoardServiceImpl이 생성될때 BoardRepository 같이 만들기
+    // 생성자 주입
     public BoardServiceImpl() {
         this.repository = new BoardRepository();
     }
@@ -30,9 +30,10 @@ public class BoardServiceImpl implements BoardService{
 
         // 게시판 데이터를 응답 객체로 변환
         List<BoardResponseDto> boardResponseDtos = boardList.stream()
-                //.map(board -> BoardResponseDto.fromEntity(board))
+                // .map(board -> BoardResponseDto.fromEntity(board))
                 .map(BoardResponseDto::fromEntity)
                 .collect(Collectors.toList());
+
         return boardResponseDtos;
     }
 
@@ -40,11 +41,11 @@ public class BoardServiceImpl implements BoardService{
     public BoardResponseDto findBoardById(Long id) {
         Optional<Board> board = repository.findById(id);
 
-        // board.map 설명
         // Optional<Board> >> Optional<BoardResponseDto> 변환
         // : 변환 작업을 할 때 내부 데이터가 null 인 경우 Exception 발생
         BoardResponseDto boardResponseDto = board.map(BoardResponseDto::fromEntity)
-                .orElseThrow(()-> new IllegalArgumentException("해당 id의 게시글을 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException("해당 id의 게시글을 찾을 수 없습니다."));
+
         return boardResponseDto;
     }
 
@@ -60,7 +61,7 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public void deleteBoard(Long id) {
         if (!repository.findById(id).isPresent()) {
-            // 해당 id의 데이터가 존재하지 x
+            // 해당 id의 데이터가 존재하지 X
             throw new IllegalArgumentException("해당 id의 게시글을 찾을 수 없습니다.");
         }
         repository.delete(id);
