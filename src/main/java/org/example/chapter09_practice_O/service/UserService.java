@@ -1,6 +1,6 @@
-package org.example.chapter09_practice.service;
+package org.example.chapter09_practice_O.service;
 
-import org.example.chapter09_practice.model.User;
+import org.example.chapter09_practice_O.model.User;
 import java.util.List;
 
 // 인터페이스의 특징
@@ -29,7 +29,6 @@ public interface UserService {
     void addUser(User user);
 
     User getUserById(int id);
-
     List<User> getAllUsers();
 
     void updateUserEmail(int id, String newEmail);

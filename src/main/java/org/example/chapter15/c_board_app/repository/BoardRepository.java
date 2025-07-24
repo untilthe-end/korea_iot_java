@@ -8,8 +8,11 @@ import java.util.Optional;
 
 public class BoardRepository {
     private final List<Board> boardStorage = new ArrayList<>();
+
+
     private Long idSequence = 1L;
 
+    // Board 클래스 받아온다.
     public void save(Board board) {
         board.setId(idSequence++);
         boardStorage.add(board);

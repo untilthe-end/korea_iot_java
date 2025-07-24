@@ -14,7 +14,6 @@ public class BoardController {
         this.boardService = new BoardServiceImpl();
     }
 
-    // 1. 게시판 생성
     public void createBoard(BoardRequestDto dto) {
         if (isValidRequest(dto)) {
             // 게시글 등록 O
@@ -26,7 +25,6 @@ public class BoardController {
         }
     }
 
-    // 2. 게시판 조회 (전체)
     public List<BoardResponseDto> getAllBoards() {
         List<BoardResponseDto> boards = null;
 
@@ -43,7 +41,6 @@ public class BoardController {
         return boards;
     }
 
-    // 3. 게시판 조회 (단건)
     public BoardResponseDto getBoardById(Long id) {
         BoardResponseDto dto = null;
 
@@ -61,7 +58,6 @@ public class BoardController {
         return dto;
     }
 
-    // 4. 게시판 수정
     public void updateBoard(Long id, BoardRequestDto dto) {
         if (isValidRequest(dto)) {
             boardService.updateBoard(id, dto);
@@ -71,7 +67,6 @@ public class BoardController {
         }
     }
 
-    // 5. 게시판 삭제
     public void deleteBoard(Long id) {
         try {
             boardService.deleteBoard(id);

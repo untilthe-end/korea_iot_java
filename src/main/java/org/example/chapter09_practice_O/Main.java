@@ -1,4 +1,4 @@
-package org.example.chapter09_practice;
+package org.example.chapter09_practice_O;
 
 /*
     === 사용자(User) 관리 시스템 구현 ===
@@ -40,9 +40,9 @@ package org.example.chapter09_practice;
 // ex) 학생 등록하기, 학생 정보 가져오기, 학생 삭제하기 등을 처리
 //      >> model을 가지고 일하는 곳
 
-import org.example.chapter09_practice.exception.UserNotFoundException;
-import org.example.chapter09_practice.model.User;
-import org.example.chapter09_practice.service.UserServiceImpl;
+import org.example.chapter09_practice_O.exception.UserNotFoundException;
+import org.example.chapter09_practice_O.model.User;
+import org.example.chapter09_practice_O.service.UserServiceImpl;
 
 import java.util.List;
 
@@ -80,9 +80,10 @@ public class Main {
         try {
             userService.getUserById(100);
         } catch (UserNotFoundException e) {
-            System.out.println("조회 실패: " + e.getMessage());
+            System.out.println("조회 실패: " + e.getMessage()); // e.getMessage())는 예외클래스 만든거에 super(message) 담아서 가능.
         }
         System.out.println("---------------------------------------");
+
         // 사용자 삭제
         try {
             User result = userService.getUserById(1);

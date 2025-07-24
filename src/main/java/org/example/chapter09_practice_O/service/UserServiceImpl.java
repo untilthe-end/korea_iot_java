@@ -1,7 +1,7 @@
-package org.example.chapter09_practice.service;
+package org.example.chapter09_practice_O.service;
 
-import org.example.chapter09_practice.exception.UserNotFoundException;
-import org.example.chapter09_practice.model.User;
+import org.example.chapter09_practice_O.exception.UserNotFoundException;
+import org.example.chapter09_practice_O.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
         // 리스트.remove(제거할요소);
         // cf) 제거 할 요소 타입은 리스트의 요소 타입과 일치!
 
-        User userToDelete = null; // 전체 리스트에서 특정 id와 일치하는 사용자 정보를 닮을 변수 선언
+        User userToDelete = null; // 전체 리스트에서 특정 id와 일치하는 사용자 정보를 담을 변수 선언
 
         for (User user : userList) {
             if (user.getId() == id) {
@@ -83,7 +83,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUsersByName(String name) {
         // 반환값을 담을 변수 선언 & 초기화
-
         List<User> result = new ArrayList<>();
 
         for (User user : userList) {
@@ -93,7 +92,6 @@ public class UserServiceImpl implements UserService {
                 result.add(user);
             }
         }
-
         return result;
     }
 }

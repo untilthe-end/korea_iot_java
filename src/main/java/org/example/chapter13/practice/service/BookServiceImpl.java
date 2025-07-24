@@ -10,7 +10,7 @@ public class BookServiceImpl implements BookManager<Book> {
 
     private final BookRepository repository = BookRepository.getInstance();
 
-    private BookServiceImpl() {};
+//    private BookServiceImpl() {};
 
     public static BookServiceImpl getInstance() {
         if (instance == null) {

@@ -18,10 +18,10 @@ public class BookRepository {
 
     // private List<Book> books = new ArrayList<>(); // DB(데이터베이스) 역할 대신 Map 으로..
     // 도서 저장소 (id 값을 key로 저장 Map)
+    // 특정 id 값에 책이 들어있다.
     private Map<String, Book> bookStore = new HashMap<>(); // DB(데이터베이스) 역할
 
 
-    // 도서 저장(Create)
     public Book save(Book book) {
         // 중복된 id 값일 경우 도서 저장 x
         if (bookStore.containsKey(book.getId())) {
@@ -34,7 +34,6 @@ public class BookRepository {
         return book;
     }
 
-    // 도서 조회(Read - 단건)
     public Book findById(String id) {
         return bookStore.get(id);
 
@@ -44,12 +43,10 @@ public class BookRepository {
             책 저장소 전체를 순회하여 매개변수의 id 값과 일치하는 요소를 필터링 해야함!
          */
     }
-    // 도서 조회(Read - 전체)
     public List<Book> findAll() {
         return new ArrayList<>(bookStore.values()); // Map의 값은 Book 타입
     }
 
-    // 도서 삭제(Delete)
     public boolean delete(String id) {
         if (!bookStore.containsKey(id)) {
             System.out.println("[" + id + "]의 책이 존재하지 않습니다. 책이 삭제되지 않았습니다.");
