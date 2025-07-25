@@ -1,0 +1,196 @@
+
+@startuml
+skinparam packageStyle rectangle
+
+' ==== Controller ====
+package "controller" {
+    class PatientController {
+        - private patientService : PatientService
+        + public void registerPatient(PatientCreateRequestDto dto)
+        + public List<PatientListResponseDto> getAllPatients()
+        + public PatientDetailResponseDto getPatientById(Long id)
+        + public void updatePatient(Long id, PatientUpdateRequestDto dto)
+        + public void deletePatient(Long id)
+    }
+
+    class HealthRecordController {
+        - private healthRecordService : HealthRecordService
+        + public void createRecord(RecordCreateRequestDto dto)
+        + public List<RecordListResponseDto> getAllRecords()
+        + public List<RecordListResponseDto> filterRecordsByDiagnosis(String diagnosis)
+        + public void deleteRecord(Long id)
+    }
+}
+
+' ==== Service ====
+package "service" {
+    class PatientService {
+        + void registerPatient(PatientCreateRequestDto dto);
+        + List<PatientListResponseDto> listAllPatients();
+        + PatientDetailResponseDto getPatientById(Long id);
+        + void updatePatient(Long id, PatientUpdateRequestDto dto);
+        + void deletePatient(Long id);
+    }
+
+    class HealthRecordService {
+        + void createRecord(RecordCreateRequestDto dto);
+        + List<RecordListResponseDto> getAllRecords();
+        + List<RecordListResponseDto> filterRecordsByDiagnosis(String diagnosis);
+        + void deleteRecord(Long id);
+    }
+}
+
+package "service.impl" {
+    class PatientServiceImpl {
+        - patientRepository : PatientRepository
+        + public void registerPatient(PatientCreateRequestDto dto)
+        + public List<PatientListResponseDto> listAllPatients()
+        + public PatientDetailResponseDto getPatientById(Long id)
+        + public void updatePatient(Long id, PatientUpdateRequestDto dto)
+        + public void deletePatient(Long id)
+    }
+
+    class HealthRecordServiceImpl {
+        - healthRecordRepository : HealthRecordRepository
+        + private Long generatedRecordId()
+        + private void validatePatientId(Long patientId)
+        + public void createRecord(RecordCreateRequestDto dto)
+        + public List<RecordListResponseDto> getAllRecords()
+        + public List<RecordListResponseDto> filterRecordsByDiagnosis(String diagnosis)
+        + public void deleteRecord(Long id)
+    }
+}
+
+' ==== Repository ====
+package "repository" {
+    class PatientRepository {
+        + public void save(Patient patient)
+        + public List<Patient> findAll()
+        + public Optional<Patient> findById(Long id)
+        + public void delete(Patient patient)
+    }
+
+    class HealthRecordRepository {
+        + public void save(HealthRecord record)
+        + public List<HealthRecord> findAll()
+        + public Optional<HealthRecord> findById(Long id)
+        + public void delete(HealthRecord record)
+    }
+}
+
+' ==== Entity ====
+package "entity" {
+    class Patient {
+        - id : Long
+        - name : String
+        - age : int
+        - gender : String
+    }
+
+    class HealthRecord {
+        - id : Long
+        - patientId : Long
+        - dateOfVisit : String
+        - diagnosis : String
+        - treatment : String
+    }
+}
+
+' ==== Dto ====
+package "dto.patient.request" {
+    class PatientCreateRequestDto {
+        - name : String
+        - age : int
+        - gender : String
+    }
+
+    class PatientUpdateRequestDto {
+        - name : String
+        - age : int
+    }
+}
+
+package "dto.patient.response" {
+    class PatientDetailResponseDto {
+        - id : Long
+        - name : String
+        - age : int
+    }
+
+    class PatientListResponseDto {
+        - id : Long
+        - name : String
+    }
+}
+
+package "dto.health_record.request" {
+    class RecordCreateRequestDto {
+        - patientId : Long
+        - dateOfVisit : String
+        - diagnosis : String
+        - treatment : String
+    }
+}
+
+package "dto.health_record.response" {
+    class RecordListResponseDto {
+        - id : Long
+        - patientId : Long
+        - dateOfVisit : String
+        - diagnosis : String
+        - treatment : String
+        - inquiryTime : Date
+    }
+}
+
+' ==== App ====
+package "Main" {
+   class App {
+           - patientController : PatientController
+           - healthRecordController : HealthRecordController
+           + processChoice(int choice)
+           + main(String[] args)
+   }
+}
+
+' ==== Handler ====
+package "handler" {
+    class InputHandler {
+        + String getInput()
+        + Long getIdInput()
+        + createPatientRequest()
+        + updatePatientRequest()
+        + createRecordRequest()
+        + closeScanner()
+    }
+
+    class MenuPrinter {
+        + void printMenu()
+    }
+}
+
+' ==== Util ====
+package "util" {
+    class DateValidator {
+        + boolean isValidDate(date: String)
+    }
+}
+
+' 관계 설정
+PatientController --> PatientService
+HealthRecordController --> HealthRecordService
+PatientService <|-- PatientServiceImpl
+HealthRecordService <|-- HealthRecordServiceImpl
+PatientServiceImpl --> PatientRepository
+HealthRecordServiceImpl --> HealthRecordRepository
+HealthRecordServiceImpl --> DateValidator
+PatientRepository --> Patient
+HealthRecordRepository --> HealthRecord
+PatientCreateRequestDto --> Patient
+PatientUpdateRequestDto --> Patient
+App --> PatientController
+App --> HealthRecordController
+App --> InputHandler
+App --> MenuPrinter
+
+@enduml
