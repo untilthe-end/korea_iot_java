@@ -4,6 +4,7 @@ import org.example.user_reservation.dto.ReservationResponseDto;
 import org.example.user_reservation.entity.Reservation;
 import org.example.user_reservation.entity.User;
 import org.example.user_reservation.repository.ReservationRepository;
+import org.example.user_reservation.repository.UserRepository;
 import org.example.user_reservation.service.ReservationService;
 import org.example.user_reservation.service.UserService;
 
@@ -27,7 +28,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void createReservation(String userId) {
         // 로그인 된 사용자만 예약 가능
-        if (userServiceImpl.isLoggedIn()) {
+        if (!userServiceImpl.isLoggedIn()) {
             System.out.println("로그인이 필요한 기능입니다.");
             return;
         }
@@ -35,10 +36,11 @@ public class ReservationServiceImpl implements ReservationService {
         // 실제 사용자 ID와 일치하는지 확인
         Optional<User> optionalUser = userServiceImpl.findUserById(userId);
         if (optionalUser.isEmpty()) {
-            System.out.println("존재하지 않는 사용자입니다. 예약할 수 없습니다.");
+            System.out.println("존재하지 않는 사용자 입니다. 예약할 수 없습니다.");
             return;
         }
-        //로그인 O
+
+        // 로그인 O
         Date reservationTime = new Date();
         Reservation newReservation = new Reservation(reservationIdSequence++, userId, reservationTime);
         reservationRepository.save(newReservation);
@@ -58,19 +60,22 @@ public class ReservationServiceImpl implements ReservationService {
                         res.getReservationId(),
                         res.getUserId(),
                         res.getReservationTime(),
-                        res.isActive() ? "예약중" : "예약 취소"
+                        res.isActive() ? "예약 중" : "예약 취소"
                 ))
                 .collect(Collectors.toList());
+
         return dtos;
     }
 
     @Override
     public void cancelReservation(Long reservationId) {
         Optional<Reservation> optionalReservation = reservationRepository.findById(reservationId);
+
         if (optionalReservation.isEmpty()) {
             System.out.println("해당 예약 ID의 정보를 찾을 수 없습니다. 다시 시도해주세요.");
             return;
         }
+
         Reservation reservation = optionalReservation.get();
 
         if (!canCancel(reservation)) {
@@ -79,7 +84,6 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         reservation.cancel(); // 실제 상태 변경은 Entity가 담당
-
     }
 
     public boolean canCancel(Reservation reservation) {

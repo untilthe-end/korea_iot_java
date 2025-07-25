@@ -17,26 +17,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findUserById(String userId) {
-        return Optional.empty();
-    }
-
-    @Override
     public void registerUser(UserRegisterRequestDto dto) {
         // dto 내부의 userId 값을 사용하여 기존의 데이터와 비교
         Optional<User> optionalUser = userRepository.findByUserId(dto.getUserId());
 
-        // cf) OptionalData.get()
+        // cf) 옵셔널데이터.get()
         // : Optional 내부의 데이터를 반환
         // - 값이 존재하지 않을 때 NoSuchElementException 예외 발생
         Optional<String> optional = Optional.empty();
-       // optional.get(); // NoSuchElementException
+        // optional.get(); // NoSuchElementException
 
         // cf) .isPresent(), isEmpty()
         if (optionalUser.isPresent()) {
             // 해당 id의 유저가 존재 - 회원가입 불가!
-            System.out.println("해당 ID 유저가 존재합니다. 다시 시도해주세요.");
-            return; // 메서드 종료
+            System.out.println("해당 ID의 유저가 존재합니다. 다시 시도해주세요.");
+            return; // 메서드 종료!
         }
 
         // 회원가입 정상 로직 실행
@@ -44,6 +39,7 @@ public class UserServiceImpl implements UserService {
         String passwordCheck = dto.getPasswordCheck();
 
         if (!password.equals(passwordCheck)) {
+            // 비밀번호와 비밀번호 확인이 일치하지 않음 - 회원가입 불가!
             System.out.println("비밀번호와 비밀번호 확인이 일치하지 않습니다. 다시 시도해주세요.");
             return;
         }
@@ -59,13 +55,12 @@ public class UserServiceImpl implements UserService {
         String password = dto.getPassword();
 
         // ifPresentOrElse(a, b);
-        // : 정보가 존재하는 경우 a 로직 실행, 존재하지 않을 경우 b로직 실행
-        // user-> 에서 user는 앞에 메서드에서 가져온 값으로
-        userRepository.findByUserId(userId).ifPresentOrElse(user-> {
+        // : 정보가 존재하는 경우 a 로직 실행, 존재하지 않을 경우 b 로직 실행
+        userRepository.findByUserId(userId).ifPresentOrElse(user -> {
             // 데이터가 있는 경우
             // user 값 내부의 password 값과 dto 요청 값 내부의 비밀번호 값의 일치 여부 확인
             if (user.getPassword().equals(password)) {
-                loggedUser = user;
+                loggedUser = user; // 로그인 정보 저장
                 System.out.println("로그인 성공: " + user.getName());
             } else {
                 System.out.println("로그인 실패: 비밀번호가 일치하지 않습니다.");
@@ -76,6 +71,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logout() {
         if (loggedUser != null) {
+            // 로그인 중
             System.out.println("로그아웃 성공: " + loggedUser.getName());
             loggedUser = null;
         } else {
@@ -86,7 +82,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean isLoggedIn() {
         boolean result = loggedUser != null; // 불일치 여부 확인 연산자
-        // 로그인 중: true, 로그인 x: false;
-        return true;
+        // 로그인 중: true, 로그인 X: false
+        return result;
+    }
+
+    @Override
+    public Optional<User> findUserById(String userId) {
+        return userRepository.findByUserId(userId);
     }
 }
