@@ -27,8 +27,7 @@ public class HealthRecordController {
         return healthRecordService.filterRecordsByDiagnosis(diagnosis);
     }
 
-    public void deleteRecord(Long id) {
+    public void deleteRecord(long id) {
         healthRecordService.deleteRecord(id);
-
     }
 }
